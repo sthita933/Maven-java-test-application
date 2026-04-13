@@ -30,6 +30,7 @@ pipeline {
         }
          stage('Deploying the code ') {
             steps {
+                sh 'rm -rf *.war'
                 sh 'cp target/*.war /home/ubuntu/apache-tomcat-9.0.117/webapps/'
             }
         }
