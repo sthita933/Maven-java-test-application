@@ -13,14 +13,30 @@ pipeline {
                 sh 'mvn clean compile'
             }
         }
-         stage('Testing code') {
+        stage('Code Review') {
             steps {
-                sh 'mvn clean test'
+                sh 'mvn pmd:pmd'
+            }
+        }
+         stage('Unit test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Code Coverage') {
+            steps {
+                sh 'mvn verify'
             }
         }
          stage('Pacakge the code ') {
             steps {
                 sh 'mvn clean package'
+            }
+        }
+         stage('Deploy') {
+            steps {
+                sh '/webapps/rm -rf *.war"
+                sh 'cp **/*.war /home/ubuntu/apache-tomcat-9.0.117/webapps'
             }
         }
     }
