@@ -35,8 +35,8 @@ pipeline {
         }
          stage('Deploy') {
             steps {
-                sh 'sudo rm -rf *.war"
-                sh 'sudo cp **/*.war /home/ubuntu/apache-tomcat-9.0.117/webapps'
+                sh 'sudo rm -rf /home/ubuntu/apache-tomcat-9.0.117/webapps/*.war'
+                sh 'sudo cp **/*.war /home/ubuntu/apache-tomcat-9.0.117/webapps/'
             }
         }
     }
